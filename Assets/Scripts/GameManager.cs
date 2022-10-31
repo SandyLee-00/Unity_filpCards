@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
         {
             GameObject newCard = Instantiate(card);
             newCard.transform.parent = GameObject.Find("cards").transform;
+
+            float posX = (i / 4) * 1.4f - 2.1f;
+            float posY = (i % 4) * 1.4f - 3.0f;
+            newCard.transform.position = new Vector3(posX, posY, 0);
         }
     }
 

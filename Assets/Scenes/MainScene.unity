@@ -511,6 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txtTime: {fileID: 975398137}
+  card: {fileID: 5330131185050197685, guid: 83dc69c1941374fb9a92d6ef138aab8f, type: 3}
 --- !u!4 &2099513896
 Transform:
   m_ObjectHideFlags: 0

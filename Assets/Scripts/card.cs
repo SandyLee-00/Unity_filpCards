@@ -21,5 +21,7 @@ public class card : MonoBehaviour
         anim.SetBool("isFilped", true);
         transform.Find("front").gameObject.SetActive(true);
         transform.Find("back").gameObject.SetActive(false);
+
+        //if(GameManager.GM)
     }
 }

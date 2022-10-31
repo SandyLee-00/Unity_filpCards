@@ -6,10 +6,20 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager GM;
+
     public Text txtTime;
     float time = 0.0f;
 
     public GameObject card;
+
+    public GameObject firstCard;
+    public GameObject secondCard;
+
+    private void Awake()
+    {
+        GM = this;
+    }
 
     void Start()
     {
@@ -35,5 +45,10 @@ public class GameManager : MonoBehaviour
     {
         time += Time.deltaTime;
         txtTime.text = time.ToString("N1");
+    }
+
+    public void isMatched()
+    {
+
     }
 }

@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         int[] images = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
-        // search about it later
+        // order list randomly
         images = images.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
 
         for(int i = 0; i < 16; i++)
@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour
     {
         time += Time.deltaTime;
         txtTime.text = time.ToString("N1");
+        if(time > 30.0f)
+        {
+            timeOver();
+        }
     }
 
     public void isMatched()
@@ -73,5 +77,11 @@ public class GameManager : MonoBehaviour
         }
         firstCard = null;
         secondCard = null;
+    }
+
+    private void timeOver()
+    {
+        End.SetActive(true);
+        Time.timeScale = 0.0f;
     }
 }

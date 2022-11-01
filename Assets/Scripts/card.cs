@@ -22,6 +22,33 @@ public class card : MonoBehaviour
         transform.Find("front").gameObject.SetActive(true);
         transform.Find("back").gameObject.SetActive(false);
 
-        //if(GameManager.GM)
+        if(GameManager.GM.firstCard == null)
+        {
+            GameManager.GM.firstCard = gameObject;
+        }
+        else
+        {
+            GameManager.GM.secondCard = gameObject;
+            GameManager.GM.isMatched();
+        }
+    }
+
+    public void destroyCard()
+    {
+        Invoke("destroyCardInvoke", 0.5f);
+    }
+    private void destroyCardInvoke()
+    {
+        Destroy(gameObject);
+    }
+    public void closeCard()
+    {
+        Invoke("closeCardInvoke", 0.5f);
+    }
+    private void closeCardInvoke()
+    {
+        anim.SetBool("isFilped", false);
+        transform.Find("front").gameObject.SetActive(false);
+        transform.Find("back").gameObject.SetActive(true);
     }
 }

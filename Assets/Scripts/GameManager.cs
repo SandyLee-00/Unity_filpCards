@@ -49,6 +49,20 @@ public class GameManager : MonoBehaviour
 
     public void isMatched()
     {
+        string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+        string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
 
+        if(firstCardImage == secondCardImage)
+        {
+            firstCard.GetComponent<card>().destroyCard();
+            secondCard.GetComponent<card>().destroyCard();
+        }
+        else
+        {
+            firstCard.GetComponent<card>().closeCard();
+            secondCard.GetComponent<card>().closeCard();
+        }
+        firstCard = null;
+        secondCard = null;
     }
 }

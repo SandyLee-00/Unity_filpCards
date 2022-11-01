@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager GM;
 
     public Text txtTime;
+    public GameObject End;
     float time = 0.0f;
 
     public GameObject card;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GM = this;
+        Time.timeScale = 1.0f;
     }
 
     void Start()
@@ -56,6 +58,13 @@ public class GameManager : MonoBehaviour
         {
             firstCard.GetComponent<card>().destroyCard();
             secondCard.GetComponent<card>().destroyCard();
+
+            int leftCard = GameObject.Find("cards").transform.childCount;
+            if(leftCard == 2)
+            {
+                End.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
         }
         else
         {

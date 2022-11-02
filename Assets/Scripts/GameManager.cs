@@ -8,9 +8,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
 
+    float myTime = 0.0f;
     public Text txtTime;
+
     public GameObject scoreBoard;
-    float time = 0.0f;
+    bool isRunning = true;
+    public Text txtbestScore;
+    public Text txtmyScore;
 
     public GameObject cards;
     public GameObject card;
@@ -23,12 +27,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        GM = this;
+        GM = this;        
         Time.timeScale = 1.0f;
     }
 
     void Start()
     {
+        scoreBoard.SetActive(false);     
+
         int[] images = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
         // order list randomly
         images = images.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
@@ -49,12 +55,15 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        time += Time.deltaTime;
-        txtTime.text = time.ToString("N1");
-        if(time > 30.0f)
+        if (isRunning)
         {
-            GameOverTimeOut();
-        }
+            myTime += Time.deltaTime;
+            txtTime.text = myTime.ToString("N1");
+            if (myTime >= 60.0f)
+            {
+                GameOver();
+            }
+        }        
     }
 
     public void isMatched()
@@ -72,7 +81,7 @@ public class GameManager : MonoBehaviour
             int leftCard = cards.transform.childCount;
             if(leftCard == 2)
             {
-                GameWin();
+                GameOver();
             }
         }
         else
@@ -84,24 +93,31 @@ public class GameManager : MonoBehaviour
         secondCard = null;
     }
 
-    private void GameOverTimeOut()
-    {
-        foreach (Transform child in cards.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        scoreBoard.SetActive(true);
-        Time.timeScale = 0.0f;
-    }
-
-    private void GameWin()
+    private void GameOver()
     {
         foreach(Transform child in cards.transform)
         {
             Destroy(child.gameObject);
         }
-        scoreBoard.SetActive(true);
+        isRunning = false;
         Time.timeScale = 0.0f;
+        txtTime.text = null;
+
+        txtmyScore.text = myTime.ToString("N1");
+        
+        if (PlayerPrefs.HasKey("bestScore") == false)
+        {
+            PlayerPrefs.SetFloat("bestScore", myTime);
+        }
+        else
+        {
+            if (PlayerPrefs.GetFloat("bestScore") > myTime)
+            {
+                PlayerPrefs.SetFloat("bestScore", myTime);
+            }
+        }
+        txtbestScore.text = PlayerPrefs.GetFloat("bestScore").ToString("N1");
+
+        scoreBoard.SetActive(true);        
     }
 }

@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB0B4 \uC810\uC218"
+  m_Text: "\uB0B4 \uAE30\uB85D"
 --- !u!222 &152656770
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -629,7 +629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &544329236
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1075,7 +1075,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uCD5C\uACE0 \uC810\uC218"
+  m_Text: "\uCD5C\uACE0 \uAE30\uB85D"
 --- !u!222 &947566108
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1342,7 +1342,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC810\uC218\uD310"
+  m_Text: "\uAE30\uB85D"
 --- !u!222 &1749932136
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1449,6 +1449,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txtTime: {fileID: 975398137}
   scoreBoard: {fileID: 544329235}
+  txtbestScore: {fileID: 640670623}
+  txtmyScore: {fileID: 279717683}
   cards: {fileID: 1572898012}
   card: {fileID: 5330131185050197685, guid: 83dc69c1941374fb9a92d6ef138aab8f, type: 3}
   firstCard: {fileID: 0}

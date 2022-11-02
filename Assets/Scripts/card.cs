@@ -5,6 +5,8 @@ using UnityEngine;
 public class card : MonoBehaviour
 {
     public Animator anim;
+    public AudioSource audioSource;
+    public AudioClip flipSound;
 
     void Start()
     {
@@ -18,6 +20,8 @@ public class card : MonoBehaviour
 
     public void flipCard()
     {
+        audioSource.PlayOneShot(flipSound);
+
         anim.SetBool("isFilped", true);
         transform.Find("front").gameObject.SetActive(true);
         transform.Find("back").gameObject.SetActive(false);

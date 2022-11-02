@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager GM;
 
     public Text txtTime;
-    public GameObject End;
+    public GameObject scoreBoard;
     float time = 0.0f;
 
     public GameObject cards;
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        End.SetActive(true);
+        scoreBoard.SetActive(true);
         Time.timeScale = 0.0f;
     }
 
@@ -99,9 +99,9 @@ public class GameManager : MonoBehaviour
     {
         foreach(Transform child in cards.transform)
         {
-            GameObject.Destroy(child.gameObject);
+            Destroy(child.gameObject);
         }
-        End.SetActive(true);
+        scoreBoard.SetActive(true);
         Time.timeScale = 0.0f;
     }
 }

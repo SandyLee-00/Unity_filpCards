@@ -805,6 +805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txtTime: {fileID: 975398137}
   End: {fileID: 551733144}
+  cards: {fileID: 1572898012}
   card: {fileID: 5330131185050197685, guid: 83dc69c1941374fb9a92d6ef138aab8f, type: 3}
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject End;
     float time = 0.0f;
 
+    public GameObject cards;
     public GameObject card;
 
     public GameObject firstCard;
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < 16; i++)
         {
             GameObject newCard = Instantiate(card);
-            newCard.transform.parent = GameObject.Find("cards").transform;
+            newCard.transform.parent = cards.transform;
 
             float posX = (i / 4) * 1.4f - 2.1f;
             float posY = (i % 4) * 1.4f - 3.0f;
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
         txtTime.text = time.ToString("N1");
         if(time > 30.0f)
         {
-            timeOver();
+            GameOverTimeOut();
         }
     }
 
@@ -68,11 +69,10 @@ public class GameManager : MonoBehaviour
             firstCard.GetComponent<card>().destroyCard();
             secondCard.GetComponent<card>().destroyCard();
 
-            int leftCard = GameObject.Find("cards").transform.childCount;
+            int leftCard = cards.transform.childCount;
             if(leftCard == 2)
             {
-                End.SetActive(true);
-                Time.timeScale = 0.0f;
+                GameWin();
             }
         }
         else
@@ -84,8 +84,23 @@ public class GameManager : MonoBehaviour
         secondCard = null;
     }
 
-    private void timeOver()
+    private void GameOverTimeOut()
     {
+        foreach (Transform child in cards.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        End.SetActive(true);
+        Time.timeScale = 0.0f;
+    }
+
+    private void GameWin()
+    {
+        foreach(Transform child in cards.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
         End.SetActive(true);
         Time.timeScale = 0.0f;
     }

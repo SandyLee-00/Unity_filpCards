@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class card : MonoBehaviour
 {
@@ -8,33 +9,48 @@ public class card : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip flipSound;
 
+    GameObject back;
+
+    bool isFlipedBefore = false;
     void Start()
     {
-        
+        back = transform.Find("back").gameObject;
     }
 
     void Update()
     {
-        
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("card_flip"))
+        {
+            transform.Find("front").gameObject.SetActive(true);
+            transform.Find("back").gameObject.SetActive(false);
+        }
     }
 
     public void flipCard()
     {
         audioSource.PlayOneShot(flipSound);
 
-        anim.SetBool("isFilped", true);
-        transform.Find("front").gameObject.SetActive(true);
-        transform.Find("back").gameObject.SetActive(false);
+        anim.SetBool("isOpen", true);
 
-        if(GameManager.GM.firstCard == null)
+        if (GameManager.GM.firstCard == null)
         {
             GameManager.GM.firstCard = gameObject;
+            GameManager.GM.SetMaxCountAfterFirstCard();
         }
         else
         {
             GameManager.GM.secondCard = gameObject;
+            GameManager.GM.SetZeroCountAfterFirstCard();
             GameManager.GM.isMatched();
         }
+
+        if (!isFlipedBefore)
+        {
+            isFlipedBefore = true;
+            SpriteRenderer spriteRenderer = back.GetComponent<SpriteRenderer>();
+            spriteRenderer.color = new Color(0.9f, 0.9f, 0.9f, 1);
+        }
+
     }
 
     public void destroyCard()
@@ -51,7 +67,7 @@ public class card : MonoBehaviour
     }
     private void closeCardInvoke()
     {
-        anim.SetBool("isFilped", false);
+        anim.SetBool("isOpen", false);
         transform.Find("front").gameObject.SetActive(false);
         transform.Find("back").gameObject.SetActive(true);
     }

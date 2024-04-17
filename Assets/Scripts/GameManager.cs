@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviour
                 firstCard = null;
             }
         }
-       
     }
 
     public void isMatched()
@@ -103,7 +102,7 @@ public class GameManager : MonoBehaviour
                 GameOver();
             }
         }
-        else
+        else if (firstCardImage != secondCardImage)
         {
             audioSource.PlayOneShot(unmatchSound);
 

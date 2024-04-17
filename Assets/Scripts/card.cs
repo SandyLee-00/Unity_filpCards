@@ -50,7 +50,6 @@ public class card : MonoBehaviour
             SpriteRenderer spriteRenderer = back.GetComponent<SpriteRenderer>();
             spriteRenderer.color = new Color(0.9f, 0.9f, 0.9f, 1);
         }
-
     }
 
     public void destroyCard()
